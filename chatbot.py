@@ -70,13 +70,13 @@ async def get_response(session, question):
         'api-key': api_key,
     }
     data = {
-        "model": "aasare-gpt35",
+        "model": "aasare",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": question},
         ]
     }
-    async with session.post(f"{azure_endpoint}openai/deployments/aasare-gpt35/chat/completions?api-version={api_version}", headers=headers, json=data) as response:
+    async with session.post(f"{azure_endpoint}openai/deployments/aasare-35/chat/completions?api-version={api_version}", headers=headers, json=data) as response:
         if response.status == 200:
             response_json = await response.json()
             return response_json['choices'][0]['message']['content']
